@@ -7,11 +7,12 @@ import { GameCard } from "@/components/GameCard";
 import { Metadata } from "next";
 
 interface PropsParams {
-  id: string;
+  params: { id: string };
 }
 
-export async function generateMetadata({ id }: PropsParams): Promise<Metadata> {
+export async function generateMetadata(props: PropsParams): Promise<Metadata> {
   try {
+    const { id } = props.params;
     const res: GameProps = await fetch(
       `${process.env.NEXT_API_URL}/next-api/?api=game&id=${id}`,
       { next: { revalidate: 60 } }
