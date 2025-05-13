@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎮 DalyGames
 
-## Getting Started
+DalyGames é uma aplicação web construída com **Next.js**, estilizada com **TailwindCSS**, escrita em **TypeScript** e utilizando **React Icons**. O projeto consome uma **API externa** para exibir informações relacionadas a jogos, proporcionando uma experiência visual limpa e moderna.
 
-First, run the development server:
+🚀 Acesse a demo hospedada na Vercel: [https://dalygames.vercel.app](https://dalygames.vercel.app)
+
+---
+
+## 📦 Tecnologias Utilizadas
+
+- [Next.js](https://nextjs.org/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [React Icons](https://react-icons.github.io/react-icons/)
+- API externa para consumo de dados
+
+---
+
+## ⚙️ Como rodar localmente
+
+1. **Clone o repositório**
+
+```bash
+git clone https://github.com/antoni0jsneto/dalygames.git
+cd dalygames
+```
+
+2. **Instale as dependências**
+
+```bash
+npm install
+# ou
+yarn install
+```
+
+3. **Crie o arquivo `.env.local`**
+
+Na raiz do projeto, crie um arquivo chamado `.env.local` com o seguinte conteúdo:
+
+```env
+NEXT_API_URL=https://sua-api.com.br/endpoint
+PROJECT_URL=http://localhost:3000
+```
+
+> 🔐 Substitua os valores conforme sua necessidade ou ambiente.
+
+4. **Inicie o projeto**
 
 ```bash
 npm run dev
-# or
+# ou
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Acesse em: [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🌍 Deploy
 
-## Learn More
+O projeto está publicado na [Vercel](https://vercel.com/), o que permite CI/CD automático para cada push na branch `main`.
 
-To learn more about Next.js, take a look at the following resources:
+Demo pública: [https://dalygames.vercel.app](https://dalygames.vercel.app)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📂 Estrutura de Pastas
 
-## Deploy on Vercel
+```bash
+.
+├── components/         # Componentes reutilizáveis
+├── pages/              # Páginas da aplicação
+├── public/             # Arquivos estáticos
+├── styles/             # Estilos globais (Tailwind)
+├── types/              # Tipagens personalizadas (TypeScript)
+├── .env.local.example  # Exemplo do arquivo de variáveis de ambiente
+├── tailwind.config.js  # Configuração do Tailwind
+└── tsconfig.json       # Configuração do TypeScript
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## ✨ Contribuição
+
+Contribuições são bem-vindas! Sinta-se à vontade para abrir **issues**, **forkar** o projeto e enviar **pull requests**.
+
+---
+
+## 📄 Licença
+
+Este projeto está licenciado sob a **MIT License** – veja o arquivo [LICENSE](LICENSE) para detalhes.
