@@ -6,37 +6,34 @@ import { Label } from "./components/label";
 import { GameCard } from "@/components/GameCard";
 import { Metadata } from "next";
 
-<<<<<<< HEAD
 interface PropsParams {
-  params: { id: string };
+  params: {
+    id: string;
+  };
 }
 
-export async function generateMetadata(props: PropsParams): Promise<Metadata> {
-  try {
-    const { id } = props.params;
-    const res: GameProps = await fetch(
-=======
 export async function generateMetadata({
   params,
-}: {
-  params: { id: string };
-}): Promise<Metadata> {
+}: PropsParams): Promise<Metadata> {
   try {
-    const { id } = params;
-
-    const res = await fetch(
->>>>>>> 39eb8e9f5d7b5bad1cea2765e439acb9f17251fa
+    const { id } = await params;
+    const response: GameProps = await fetch(
       `${process.env.NEXT_API_URL}/next-api/?api=game&id=${id}`,
       { next: { revalidate: 60 } }
-    );
-    const data: GameProps = await res.json();
+    )
+      .then((res) => res.json())
+      .catch(() => {
+        return {
+          title: "DalyGames - Descubra jogos incríveis para se divertir.",
+        };
+      });
 
     return {
-      title: `DalyGames - ${data.title}`,
-      description: `${data.description.slice(0, 100)}...`,
+      title: response.title,
+      description: `${response.description.slice(0, 100)}...`,
       openGraph: {
-        title: data.title,
-        images: [data.image_url],
+        title: response.title,
+        images: [response.image_url],
       },
       robots: {
         index: true,
@@ -46,9 +43,6 @@ export async function generateMetadata({
           index: true,
           follow: true,
           noimageindex: true,
-          "max-video-preview": -1,
-          "max-image-preview": "large",
-          "max-snippet": -1,
         },
       },
     };
@@ -83,11 +77,8 @@ async function getGameSorted() {
   }
 }
 
-export default async function Game({
-  params: { id },
-}: {
-  params: { id: string };
-}) {
+export default async function Game({ params }: PropsParams) {
+  const { id } = await params;
   const data: GameProps = await getData(id);
   const sortedGame: GameProps = await getGameSorted();
 
