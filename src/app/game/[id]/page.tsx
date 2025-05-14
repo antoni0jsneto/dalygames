@@ -6,30 +6,26 @@ import { Label } from "./components/label";
 import { GameCard } from "@/components/GameCard";
 import { Metadata } from "next";
 
-interface PropsParams {
+export async function generateMetadata({
+  params,
+}: {
   params: { id: string };
-}
-
-export async function generateMetadata(props: PropsParams): Promise<Metadata> {
+}): Promise<Metadata> {
   try {
-    const { id } = props.params;
-    const res: GameProps = await fetch(
+    const { id } = params;
+
+    const res = await fetch(
       `${process.env.NEXT_API_URL}/next-api/?api=game&id=${id}`,
       { next: { revalidate: 60 } }
-    )
-      .then((res) => res.json())
-      .catch((err) => {
-        return {
-          title: "DalyGames - Descubra jogos incríveis para se divertir.",
-        };
-      });
+    );
+    const data: GameProps = await res.json();
 
     return {
-      title: `DalyGames - ${res.title}`,
-      description: `${res.description.slice(0, 100)}...`,
+      title: `DalyGames - ${data.title}`,
+      description: `${data.description.slice(0, 100)}...`,
       openGraph: {
-        title: `${res.title}`,
-        images: [res.image_url],
+        title: data.title,
+        images: [data.image_url],
       },
       robots: {
         index: true,
