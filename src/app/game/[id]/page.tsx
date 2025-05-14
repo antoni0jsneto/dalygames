@@ -6,15 +6,11 @@ import { Label } from "./components/label";
 import { GameCard } from "@/components/GameCard";
 import { Metadata } from "next";
 
-interface PropsParams {
-  params: {
-    id: string;
-  };
-}
-
 export async function generateMetadata({
   params,
-}: PropsParams): Promise<Metadata> {
+}: {
+  params: { id: string };
+}): Promise<Metadata> {
   try {
     const { id } = await params;
     const response: GameProps = await fetch(
@@ -77,7 +73,7 @@ async function getGameSorted() {
   }
 }
 
-export default async function Game({ params }: PropsParams) {
+export default async function Game({ params }: { params: { id: string } }) {
   const { id } = await params;
   const data: GameProps = await getData(id);
   const sortedGame: GameProps = await getGameSorted();
