@@ -4,13 +4,8 @@ import Image from "next/image";
 import { Container } from "@/components/container";
 import { Label } from "./components/label";
 import { GameCard } from "@/components/GameCard";
-import { Metadata } from "next";
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { id: string };
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: { id: string } }) {
   try {
     const { id } = params;
     const response: GameProps = await fetch(
