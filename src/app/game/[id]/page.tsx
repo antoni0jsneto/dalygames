@@ -12,7 +12,7 @@ export async function generateMetadata({
   params: { id: string };
 }): Promise<Metadata> {
   try {
-    const { id } = await params;
+    const { id } = params;
     const response: GameProps = await fetch(
       `${process.env.NEXT_API_URL}/next-api/?api=game&id=${id}`,
       { next: { revalidate: 60 } }
@@ -74,7 +74,7 @@ async function getGameSorted() {
 }
 
 export default async function Game({ params }: { params: { id: string } }) {
-  const { id } = await params;
+  const { id } = params;
   const data: GameProps = await getData(id);
   const sortedGame: GameProps = await getGameSorted();
 
